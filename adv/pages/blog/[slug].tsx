@@ -59,9 +59,6 @@ export default function BlogPost({ post }: InferGetStaticPropsType<typeof getSta
       </Head>
       <div className="min-h-screen bg-gradient-to-b from-gray-800 to-gray-900 text-white p-6">
         <div className="container mx-auto max-w-3xl">
-          <Link href="/blog" legacyBehavior>
-            <a className="text-blue-400 hover:underline">← Back to Blog List</a>
-          </Link>
           <h1 className="text-5xl font-extrabold mt-6 text-gradient">{post.title}</h1>
           <img
             src={post.image}
@@ -70,9 +67,9 @@ export default function BlogPost({ post }: InferGetStaticPropsType<typeof getSta
           />
           <p className="text-lg leading-relaxed text-gray-200">{post.content}</p>
           <p className="mt-6 text-xl text-gray-400">{post.extraContent}</p>
-          <Link href="/" legacyBehavior>
+          <Link href="/blog" legacyBehavior>
             <a className="inline-block bg-blue-500 text-white py-2 px-4 mt-6 rounded-lg shadow-md hover:bg-blue-600 transition">
-              Back to Home
+              Back
             </a>
           </Link>
         </div>

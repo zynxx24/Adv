@@ -1,12 +1,13 @@
-// pages/index.tsx
 import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import React from "react";
 
 type BlogPost = {
   slug: string;
   title: string;
   image: string;
+  pdf?: string;
 };
 
 const blogPosts: BlogPost[] = [
@@ -20,36 +21,43 @@ const blogPosts: BlogPost[] = [
     title: "Kintamani Traditional Food - Mujair Nyat Nyat",
     image: "https://shorturl.at/LYkVR",
   },
+  {
+    slug: "download-pdf",
+    title: "Download Proposal",
+    image: "https://shorturl.at/LYkVR",
+    pdf: "/files/proposal.pdf",
+  },
 ];
 
 export default function Home() {
   return (
     <>
-      {/* Head */}
       <Head>
-        <title>Powerangers - P5 Kearifan Lokal</title>
-        <meta
-          name="description"
-          content="Adam Ungasan and Mujair Nyat Nyat Kintamani - Traditional Balinese Food"
-        />
+        <title>Balinese Traditional Food - P5 Kearifan Lokal</title>
+        <meta name="description" content="Explore the beauty of Balinese traditional food" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       {/* Navbar */}
-      <header className="bg-black/80 fixed top-0 left-0 w-full z-10">
+      <header className="bg-gray-900/80 fixed top-0 left-0 w-full z-10">
         <div className="container mx-auto flex justify-between items-center p-4">
           <h1 className="text-white text-2xl font-bold">Powerangers</h1>
           <nav>
             <ul className="flex space-x-6">
               <li>
-                <Link href="/" legacyBehavior>
-                  <a className="text-gray-300 hover:text-white transition-colors">Home</a>
+                <Link href="/" className="text-gray-300 hover:text-white transition">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="#about" legacyBehavior>
-                  <a className="text-gray-300 hover:text-white transition-colors">About</a>
+                <Link href="#about" className="text-gray-300 hover:text-white transition">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="#blog-posts" className="text-gray-300 hover:text-white transition">
+                  Dishes
                 </Link>
               </li>
             </ul>
@@ -62,139 +70,94 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="min-h-screen bg-[url('https://shorturl.at/LDiQH')] bg-cover bg-center bg-no-repeat text-white flex items-center justify-center"
+        className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
+        style={{ backgroundImage: "url('https://shorturl.at/LDiQH')" }}
       >
-        <div className="text-center">
-          <h1 className="text-5xl font-extrabold tracking-wide mb-4 drop-shadow-lg">
-            Group Powerangers
-          </h1>
-          <p className="text-xl text-gray-200 mb-6">
-            Showcasing the beauty of Bali's traditional cuisine
+        <div className="bg-black/50 p-8 rounded-lg text-center text-white">
+          <h1 className="text-5xl font-extrabold mb-4">Balinese Traditional Food</h1>
+          <p className="text-lg text-gray-300 mb-6">
+            Discover the rich flavors and heritage of Bali through its traditional dishes.
           </p>
-          <a
-            href="#blog-posts"
-            className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition-colors"
+          <Link
+            href="/blog"
+            className="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 transition"
           >
-            Explore Now
-          </a>
+            Explore Dishes
+          </Link>
         </div>
       </motion.div>
 
       {/* About Section */}
-      <section
-        id="about"
-        className="py-16 bg-gradient-to-b from-gray-800 to-black text-gray-300 text-center"
-      >
-        <div className="container mx-auto">
-          <motion.h2
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl font-bold mb-6"
-          >
-            About Us
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="max-w-2xl mx-auto text-lg leading-relaxed"
-          >
-            We have chosen this menu to showcase the traditional regional cuisine of Bali while
-            preserving its rich cultural heritage passed down through generations. Through the P5
-            Local Wisdom initiative, we aim to promote and safeguard these local delicacies.
-          </motion.p>
+      <section id="about" className="py-16 bg-gray-800 text-gray-200">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6">About Us</h2>
+          <p className="max-w-2xl mx-auto text-lg">
+            We celebrate the culinary heritage of Bali by showcasing its most beloved traditional dishes.
+            Through our platform, we aim to preserve and promote the cultural richness of these recipes for generations to come.
+          </p>
         </div>
       </section>
 
       {/* Blog Posts Section */}
-      <section id="blog-posts" className="py-16 bg-gray-900 text-white">
+      <section id="blog-posts" className="py-16 bg-gradient-to-br from-gray-800 to-black text-white">
         <div className="container mx-auto">
           <h2 className="text-center text-4xl font-bold mb-12">Featured Dishes</h2>
-          <motion.ul
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { delayChildren: 0.3, staggerChildren: 0.2 },
-              },
-            }}
-          >
+          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {blogPosts.map((post) => (
-              <motion.li
+              <motion.div
                 key={post.slug}
-                className="group bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-lg shadow-lg hover:shadow-2xl hover:scale-105 transform transition-transform duration-500"
-                whileHover={{ scale: 1.05 }}
+                className="group relative bg-white/10 backdrop-blur-xl rounded-xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500"
+                whileHover={{
+                  rotateX: 5,
+                  rotateY: -5,
+                  scale: 1.05,
+                }}
               >
-                {/* Blog Post Image */}
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-40 object-cover rounded-md mb-4 group-hover:opacity-90 transition-opacity duration-300"
-                />
-                {/* Blog Post Title */}
-                <Link href={`/blog/${post.slug}`} legacyBehavior>
-                  <a className="block text-2xl font-semibold text-center text-gray-200 group-hover:text-white transition-colors duration-300">
-                    {post.title}
-                  </a>
-                </Link>
-              </motion.li>
+                {/* Image with overlay */}
+                <div className="relative rounded-t-xl overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="p-6 space-y-4">
+                  <h3 className="text-xl font-semibold text-gray-100">{post.title}</h3>
+                  <p className="text-sm text-gray-300">
+                    {post.pdf ? "Download this proposal for more info." : "Learn more about this dish."}
+                  </p>
+                  {/* Conditional CTA */}
+                  {post.pdf ? (
+                    <a
+                      href={post.pdf}
+                      download
+                      className="text-yellow-500 hover:underline font-medium"
+                    >
+                      Download Proposal →
+                    </a>
+                  ) : (
+                    <Link href={`/blog/${post.slug}`} className="text-yellow-500 hover:underline font-medium">
+                      Read more →
+                    </Link>
+                  )}
+                </div>
+              </motion.div>
             ))}
-          </motion.ul>
-        </div>
-      </section>
-
-      {/* Proposal Card Section */}
-      <section className="py-16 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8">Download Our Proposal</h2>
-          <div className="max-w-xl mx-auto bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-            {/* Proposal Image */}
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="mb-6 text-center"
-            >
-              <img
-                src="https://shorturl.at/LDiQH"
-                alt="Proposal Cover"
-                className="w-40 h-40 object-cover mx-auto rounded-full shadow-lg"
-              />
-            </motion.div>
-            {/* Proposal Content */}
-            <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-              Learn about Bali's culinary heritage and traditions with our detailed proposal. Through
-              the P5 Local Wisdom initiative, we aim to preserve these cultural treasures.
-            </p>
-            {/* Download Button */}
-            <a
-              href="/files/proposal.pdf"
-              download
-              className="px-6 py-3 bg-blue-500 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 hover:shadow-lg transition-all duration-300"
-            >
-              Download Now
-            </a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-center py-6">
-        <div className="container mx-auto">
-          <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} Powerangers. All rights reserved.
-          </p>
+      <footer className="bg-black py-6">
+        <div className="container mx-auto text-center text-gray-400">
+          <p>&copy; {new Date().getFullYear()} GusWira X RPL. All rights reserved.</p>
           <div className="flex justify-center mt-4 space-x-6">
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="hover:text-white"
             >
               Facebook
             </a>
@@ -202,7 +165,7 @@ export default function Home() {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="hover:text-white"
             >
               Instagram
             </a>

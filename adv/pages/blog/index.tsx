@@ -27,7 +27,7 @@ export default function BlogList() {
       </Head>
       <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white p-6">
         <div className="container mx-auto">
-          <h1 className="text-center text-5xl font-extrabold mb-12 text-gradient">Blog</h1>
+          <h1 className="text-center text-5xl font-extrabold mb-12 text-gradient">Traditional Food</h1>
           <div className="grid gap-10 md:grid-cols-2">
             {blogPosts.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} legacyBehavior>
@@ -46,7 +46,7 @@ export default function BlogList() {
           </div>
           <Link href="/" legacyBehavior>
             <a className="inline-block bg-blue-500 text-white py-2 px-4 mt-12 rounded-lg shadow-md hover:bg-blue-600 transition">
-              Back to Home
+              Home
             </a>
           </Link>
         </div>
