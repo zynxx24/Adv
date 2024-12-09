@@ -9,8 +9,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        balineseYellow: "#f9c74f", // Example hex code for yellow
+        balineseRed: "#d62828", // Example hex code for red
+        balineseBlack: "#1b1b1b", // Example hex code for black
       },
     },
   },
